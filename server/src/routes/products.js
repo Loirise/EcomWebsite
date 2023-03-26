@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Product = require('../models/product');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const validateProduct = require('../middleware/validateProduct');
 
 /* show all */
 router.get('/', async (req, res) => {
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 /* create new */
-router.post('/', isLoggedIn, async (req, res) => {
+router.post('/', isLoggedIn, validateProduct, async (req, res) => {
     let newProduct;
     try {
         newProduct = new Product(req.body.product);
@@ -60,7 +61,7 @@ router.get('/:id', isLoggedIn, async (req, res) => {
     } catch(e) {
         res.status(400).send('Could not delete product.')
     }
-    res.status(200).json(deletedProduct);
+    res.status(204).json(deletedProduct);
 })
 
 module.exports = router;

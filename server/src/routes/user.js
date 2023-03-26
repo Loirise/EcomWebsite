@@ -15,7 +15,6 @@ router.post('/register', async (req, res, next) => {
             res.status(200).send('Account created.')
         });
     } catch(e) {
-        console.log(e.message)
         if(e.message == 'No username was given'){
             return res.status(400).send("No username was given.")
         }
@@ -47,3 +46,12 @@ router.post('/logout', (req, res, next) => {
 
 
 module.exports = router;
+
+
+/* make admin verification later */
+/* 
+{
+    "username": "jeff",
+    "password": "jeffpassword"
+}
+*/
