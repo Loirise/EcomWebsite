@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-image: url("/images/background-img-2.jpg");
+  background-size: cover;
+  color: white;
+}

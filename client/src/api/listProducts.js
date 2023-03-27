@@ -1,6 +1,4 @@
-const API_URL = `http://localhost:3000/products`
-
-export default async () => {
-    return await fetch(`${API_URL}`)
+export default async (url) => {
+    return await fetch(`${url}`)
     .then((response)=> response.json())
 }

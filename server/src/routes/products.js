@@ -5,16 +5,43 @@ const Product = require('../models/product');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const validateProduct = require('../middleware/validateProduct');
 
+const categories = [
+    "Classic Cars",
+    "Motorcycles",
+    "Planes",
+    "Ships",
+    "Trains",
+    "Trucks and Buses",
+    "Vintage Cars",
+  ];
+
+
 /* show all */
 router.get('/', async (req, res) => {
     let products;
     try {
-        products = await Product.find().limit(10);
+        products = await Product.find().limit(8);
     } catch(e) {
         return res.status(500).send('Something went wrong.')
     }
     res.status(200).json(products);
 });
+
+categories.map((category) => {
+    const categoryShort = category.toLowerCase().replace(/ /g, "")
+    return (
+        router.get(`/${categoryShort}`, async (req, res) => {
+            let products;
+            try {
+                products = await Product.find({'line': category})
+            } catch(e) {
+                return res.status(500).send('Something went wrong.')
+            }
+            res.status(200).json(products);
+        } )
+    )
+})
+
 
 /* create new */
 router.post('/', isLoggedIn, validateProduct, async (req, res) => {
