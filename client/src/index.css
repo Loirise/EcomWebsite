@@ -7,3 +7,39 @@ body {
   background-size: cover;
   color: white;
 }
+
+img {
+  width: 250px;
+  height: 250px;
+}
+
+svg line {
+  stroke-width: 2px;
+  stroke: rgb(255, 255, 255);
+}
+
+svg rect {
+  stroke-width: 2px;
+  stroke: rgb(255, 255, 255);
+}
+
+@media (min-width: 200px) {
+  img {
+    width: 250px;
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  img {
+    width: 300px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 1536px) {
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}

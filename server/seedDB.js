@@ -121,9 +121,34 @@ const productsArrays = [
 
 
 /* uncomment code below to delete everything and seed again */
-/* const productObjects = [];
+const productObjects = [];
 
 for (const item of productsArrays) {
+    let image = '';
+    switch(item[2]){
+        case 'Classic Cars':
+            image = '/images/classic-car-img.png'
+            break;
+        case 'Motorcycles':
+            image = '/images/motorcycle-img.png'
+            break;
+        case 'Planes':
+            image = '/images/plane-img.png'
+            break;
+        case 'Ships':
+            image = '/images/ship-img.png'
+            break;
+        case 'Trains':
+            image = '/images/train-img.png'
+            break;
+        case 'Trucks and Buses':
+            image = '/images/truck-img.png'
+            break;
+        case 'Vintage Cars':
+            image = '/images/vintage-car-img.png'
+            break;
+    }
+
     const product = {
         name: item[1],
         line: item[2],
@@ -131,8 +156,10 @@ for (const item of productsArrays) {
         vendor: item[4],
         description: item[5],
         quantity: parseInt(item[6]),
-        price: parseFloat(item[7])
+        price: parseFloat(item[7]),
+        image: image
     }
+    console.log(product)
     productObjects.push(product)
 }
 
@@ -153,5 +180,5 @@ const seedProducts = async () => {
         const product = new Product(item)
         await product.save();
     }
-} */
+}
 

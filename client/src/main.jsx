@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/products",
-        element: <ListProducts url={`http://localhost:3000/products`} />,
+        path: "/",
+        element: <ListProducts url={``} home={true} />,
       },
       {
         path: "/products/classiccars",

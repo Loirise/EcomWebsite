@@ -2,12 +2,27 @@ import React, { useEffect, useState } from "react";
 import listProducts from "../api/listProducts";
 import Product from "./Product";
 
-const ListProducts = ({ url }) => {
+const ListProducts = ({ url, home = false }) => {
+  if (home) {
+    return (
+      <div className="w-1/2 mx-auto h-[500px] xl:w-5/6 xl:h-full">
+        <h1 className="font-bold mb-4 text-2xl">Welcome to our shop</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates
+          cum cumque aspernatur itaque velit. Laudantium rem dolore provident
+          iusto, maxime fuga itaque corrupti autem recusandae, consequatur
+          pariatur suscipit, repellat doloribus.
+        </p>
+      </div>
+    );
+  }
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     listProducts(url).then((data) => setProducts(data));
-  }, []);
+    setCurrentPage(1);
+  }, [url]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
@@ -49,6 +64,7 @@ const ListProducts = ({ url }) => {
                   scale={product.scale}
                   vendor={product.vendor}
                   price={product.price}
+                  image={product.image}
                 />
               </div>
             );

@@ -12,14 +12,14 @@ const Categories = () => {
               className="hover:underline hover:underline-offset-8"
               key={category.toLowerCase().replace(/ /g, "")}
             >
-              <a href={`/products/${category.toLowerCase().replace(/ /g, "")}`}>
+              {/* <a href={`/products/${category.toLowerCase().replace(/ /g, "")}`}>
                 {category}
-              </a>
-              {/* <Link
+              </a> */}
+              <Link
                 to={`/products/${category.toLowerCase().replace(/ /g, "")}`}
               >
                 {category}
-              </Link> */}
+              </Link>
             </li>
           );
         })}
