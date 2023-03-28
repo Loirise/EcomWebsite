@@ -7,19 +7,11 @@ const Root = () => {
   return (
     <>
       <Navbar />
-      <div className="mx-auto w-5/6 flex gap-8 justify-between items-center rounded-lg bg-white/20 backdrop-blur-sm h-[80vh]">
+      <div className="mx-auto mb-32 w-[95%] md:w-5/6 h-auto flex flex-col xl:flex-row gap-8 justify-between items-center rounded-lg bg-white/20 backdrop-blur-sm">
         <Categories />
-        <div className="w-4/5 h-full">
-          <div className="h-[95%]">
+        <div className="w-full flex justify-center xl:w-4/5 h-full">
+          <div className="w-full flex flex-col justify-around md:py-32">
             <Outlet />
-          </div>
-          <div className="">
-            <ul className="flex items-center justify-end mr-8 gap-8">
-              <li className="border-2 px-2">1</li>
-              <li className="border-2 px-2">2</li>
-              <li className="border-2 px-2">3</li>
-              <li className="border-2 px-2">...</li>
-            </ul>
           </div>
         </div>
       </div>

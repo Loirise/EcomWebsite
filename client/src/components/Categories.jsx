@@ -4,8 +4,8 @@ import { categories } from "../shared/categories";
 
 const Categories = () => {
   return (
-    <div className="w-1/5 border-r-2 h-full">
-      <ul className="h-full flex flex-col gap-8 justify-evenly items-center">
+    <div className="h-1/5 xl:w-1/5 xl:h-full flex-wrap mx-2 py-8 border-b-2 xl:border-b-0 xl:border-r-2 ">
+      <ul className="xl:h-full flex flex-wrap xl:flex-col gap-8 justify-evenly items-center">
         {categories.map((category) => {
           return (
             <li
