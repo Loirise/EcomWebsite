@@ -7,10 +7,9 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        'outline': '0 0 0 1px grey',
-        'outline-white': '0 0 0 1px white'
+        'outline': '0 0 0 1px white'
       },
-      screens : {
+      screens: {
         'xs': '200px'
       }
     },

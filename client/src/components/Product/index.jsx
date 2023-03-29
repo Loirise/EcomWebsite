@@ -10,7 +10,7 @@ const Product = ({ name, line, scale, vendor, price, image }) => {
           <p className="italic">{vendor}</p>
           <p>{price} $</p>
         </div>
-        <img src={image} alt="product image" />
+        <img src={image} className="productImage" alt="product image" />
       </div>
     </div>
   );

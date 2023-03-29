@@ -3,43 +3,24 @@
 @tailwind utilities;
 
 body {
-  background-image: url("/images/background-img-2.jpg");
+  background-image: url("/images/background-img.jpg");
   background-size: cover;
   color: white;
 }
 
-img {
-  width: 250px;
-  height: 250px;
+.active {
+  text-decoration: underline solid white 2px;
 }
 
-svg line {
-  stroke-width: 2px;
-  stroke: rgb(255, 255, 255);
+.productImage {
+  width: 200px;
+  height: 200px;
 }
 
-svg rect {
-  stroke-width: 2px;
-  stroke: rgb(255, 255, 255);
+/* .product:first-child {
+  margin-top: 1em;
 }
 
-@media (min-width: 200px) {
-  img {
-    width: 250px;
-    height: 200px;
-  }
-}
-
-@media (min-width: 768px) {
-  img {
-    width: 300px;
-    height: 250px;
-  }
-}
-
-@media (min-width: 1536px) {
-  img {
-    width: 200px;
-    height: 200px;
-  }
-}
+.product:last-child {
+  margin-bottom: 1em;
+} */
