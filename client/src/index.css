@@ -12,15 +12,25 @@ body {
   text-decoration: underline solid white 2px;
 }
 
+.activePage {
+  background-color: rgb(0, 141, 141);
+}
+
 .productImage {
   width: 200px;
   height: 200px;
 }
 
-/* .product:first-child {
-  margin-top: 1em;
+.pagList li {
+  padding: 0.25em 0.5em;
+  box-shadow: 0 0 0 1px white;
+  transition: background-color 0.2s;
 }
 
-.product:last-child {
-  margin-bottom: 1em;
-} */
+.pagList li a {
+  text-decoration: none;
+}
+
+.pagList li:hover {
+  background: rgb(0, 179, 179);
+}

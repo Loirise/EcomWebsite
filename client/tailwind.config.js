@@ -11,6 +11,9 @@ module.exports = {
       },
       screens: {
         'xs': '200px'
+      },
+      colors: {
+        'cyan-hover': 'rgb(0, 179, 179)'
       }
     },
   },

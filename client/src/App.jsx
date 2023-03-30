@@ -7,6 +7,7 @@ import Products from "./pages/Products";
 import Category from "./components/Category";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Cart from "./pages/Cart";
 import Error from "./pages/Error";
 
 const App = () => {
@@ -56,6 +57,7 @@ const App = () => {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

@@ -15,7 +15,7 @@ const Navbar = () => {
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
   return (
-    <nav className="mb-32">
+    <nav className="mb-24">
       <div className={`${flexBetween} fixed top-0 z-40 w-full py-3`}>
         <div className={`${flexBetween} w-5/6 mx-auto`}>
           <div className={`${flexBetween} w-full gap-16`}>
@@ -44,6 +44,9 @@ const Navbar = () => {
                   <NavLink to={"/register"} className={navLinkClass}>
                     Register
                   </NavLink>
+                  <NavLink to={"/cart"} className={navLinkClass}>
+                    Cart
+                  </NavLink>
                 </div>
               </div>
             ) : (
@@ -62,7 +65,7 @@ const Navbar = () => {
       {/* mobile menu */}
       {!isAboveMediumScreens && isMenuToggled && (
         <motion.div
-          className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-black/50 backdrop-blur-sm drop-shadow-xl"
+          className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-black/90 backdrop-blur-sm drop-shadow-xl"
           initial="hidden"
           whileInView="visible"
           transition={{ duration: 0.1 }}
@@ -96,6 +99,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to={"/register"} className={navLinkClass}>
               Register
+            </NavLink>
+            <NavLink to={"/cart"} className={navLinkClass}>
+              Cart
             </NavLink>
           </div>
         </motion.div>
