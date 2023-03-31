@@ -40,11 +40,11 @@ const Product = ({ product }) => {
         <motion.div
           className="absolute top-0 w-full h-full z-[1055] bg-black/90 backdrop-blur-sm flex flex-col gap-3"
           tabIndex={-1}
-          initial="hidden"
-          whileInView="visible"
-          transition={{ duration: 0.2 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.25 }}
           variants={{
-            hidden: { y: -50 },
+            hidden: { y: -100 },
             visible: { y: 0 },
           }}
         >

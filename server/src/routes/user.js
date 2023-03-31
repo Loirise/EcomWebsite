@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
+
+const createToken = (username, email) => {
+    return jwt.sign({username, email}, process.env.SECRET, { expiresIn: '2d'});
+}
 
 /* create user */
 router.post('/register', async (req, res, next) => {
@@ -12,35 +17,41 @@ router.post('/register', async (req, res, next) => {
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, (err) => {
             if (err) { return next(err) }
-            res.status(200).send('Account created.')
+            const token = createToken(email)
+            res.status(200).json({email, token})
         });
     } catch(e) {
         if(e.message == 'No username was given'){
-            return res.status(400).send("No username was given.")
+            return res.status(400).json("No username was given.")
+        }
+        if(e.message == 'A user with the given username is already registered'){
+            return res.status(400).json("A user with the given username is already registered")
         }
         if(e.message == 'No password was given'){
-            return res.status(400).send("No password was given.")
+            return res.status(400).json("No password was given.")
         }
         if(e.message == 'User validation failed: email: Path `email` is required.'){
-            return res.status(400).send("Email is required.")
+            return res.status(400).json("Email is required.")
         }
         if(e.message.substring(65,70) == 'email'){
-            return res.status(400).send("Email already in use.")
+            return res.status(400).json("Email already in use.")
         }
-        return res.status(400).send("Something went wrong.")
+        return res.status(400).json("Something went wrong."+ e.message)
     };
 });
 
 /* log in */
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
-    res.status(200).send('User logged in.')
-});
+router.post('/login', passport.authenticate('local'), (req, res) => {
+    const { email } = req.body;
+    const token = createToken(email);
+    res.status(200).json({email, token});
+})
 
 /* log out */
 router.post('/logout', (req, res, next) => {
     req.logout((err) => {
         if (err) {return next(err)}
-    res.status(200).send('User logged out.')
+    res.status(200).json('User logged out.')
     });
 });
 

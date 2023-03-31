@@ -4,8 +4,13 @@ import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { useLogout } from "../../hooks/useLogout";
 
 const Navbar = () => {
+  const { logout } = useLogout();
+  const handleClick = () => {
+    logout();
+  };
   const navLinkClass = ({ isActive }) =>
     isActive ? `active ${hoverEffect}` : `${hoverEffect}`;
   const hoverEffect =
@@ -38,6 +43,12 @@ const Navbar = () => {
                 </div>
                 {/* inner-right */}
                 <div className={`${flexBetween} gap-8 text-xl`}>
+                  <button
+                    className="shadow-outline rounded px-3 py-1 transition duration-100 hover:bg-cyan-hover"
+                    onClick={handleClick}
+                  >
+                    Logout
+                  </button>
                   <NavLink to={"/login"} className={navLinkClass}>
                     Login
                   </NavLink>
@@ -84,7 +95,7 @@ const Navbar = () => {
             </button>
           </div>
           {/* menu items */}
-          <div className={"ml-[33%] flex flex-col gap-10 text-2xl"}>
+          <div className={"ml-[33%] flex flex-col gap-10 text-2xl items-start"}>
             <NavLink to={"/"} className={navLinkClass}>
               Home
             </NavLink>
@@ -103,6 +114,12 @@ const Navbar = () => {
             <NavLink to={"/cart"} className={navLinkClass}>
               Cart
             </NavLink>
+            <button
+              className="shadow-outline rounded px-3 py-1 transition duration-100 hover:bg-cyan-hover"
+              onClick={handleClick}
+            >
+              Logout
+            </button>
           </div>
         </motion.div>
       )}
