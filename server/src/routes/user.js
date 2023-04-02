@@ -17,8 +17,8 @@ router.post('/register', async (req, res, next) => {
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, (err) => {
             if (err) { return next(err) }
-            const token = createToken(email)
-            res.status(200).json({email, token})
+            const token = createToken(username)
+            res.status(200).json({username, token})
         });
     } catch(e) {
         if(e.message == 'No username was given'){
@@ -41,11 +41,25 @@ router.post('/register', async (req, res, next) => {
 });
 
 /* log in */
-router.post('/login', passport.authenticate('local'), (req, res) => {
-    const { email } = req.body;
-    const token = createToken(email);
-    res.status(200).json({email, token});
-})
+router.post('/login', function(req, res, next) {
+
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { 
+        return next(err); }
+
+      if (!user) { 
+        return res.status(401).json('Wrong username or password') }
+  
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        const { username } = req.body;
+        const token = createToken(username);
+        res.status(200).json({username, token});
+      });
+  
+    })(req, res, next);
+  
+  })
 
 /* log out */
 router.post('/logout', (req, res, next) => {
@@ -57,12 +71,3 @@ router.post('/logout', (req, res, next) => {
 
 
 module.exports = router;
-
-
-/* make admin verification later */
-/* 
-{
-    "username": "jeff",
-    "password": "jeffpassword"
-}
-*/

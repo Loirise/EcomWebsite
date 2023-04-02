@@ -5,8 +5,10 @@ import { NavLink } from "react-router-dom";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { useLogout } from "../../hooks/useLogout";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Navbar = () => {
+  const { user } = useAuthContext();
   const { logout } = useLogout();
   const handleClick = () => {
     logout();
@@ -43,18 +45,29 @@ const Navbar = () => {
                 </div>
                 {/* inner-right */}
                 <div className={`${flexBetween} gap-8 text-xl`}>
-                  <button
-                    className="shadow-outline rounded px-3 py-1 transition duration-100 hover:bg-cyan-hover"
-                    onClick={handleClick}
-                  >
-                    Logout
-                  </button>
-                  <NavLink to={"/login"} className={navLinkClass}>
-                    Login
-                  </NavLink>
-                  <NavLink to={"/register"} className={navLinkClass}>
-                    Register
-                  </NavLink>
+                  {user && (
+                    <div className="flex gap-8 items-center">
+                      <span className="text-md text-cyan-hover">
+                        Logged in as: {user.username}
+                      </span>
+                      <button
+                        className="shadow-outline rounded px-3 py-1 transition duration-100 hover:bg-cyan-hover"
+                        onClick={handleClick}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                  {!user && (
+                    <div className="flex gap-8 items-center">
+                      <NavLink to={"/login"} className={navLinkClass}>
+                        Login
+                      </NavLink>
+                      <NavLink to={"/register"} className={navLinkClass}>
+                        Register
+                      </NavLink>
+                    </div>
+                  )}
                   <NavLink to={"/cart"} className={navLinkClass}>
                     Cart
                   </NavLink>
@@ -95,7 +108,7 @@ const Navbar = () => {
             </button>
           </div>
           {/* menu items */}
-          <div className={"ml-[33%] flex flex-col gap-10 text-2xl items-start"}>
+          <div className={"ml-[33%] flex flex-col gap-8 text-2xl items-start"}>
             <NavLink to={"/"} className={navLinkClass}>
               Home
             </NavLink>
@@ -105,21 +118,33 @@ const Navbar = () => {
             <NavLink to={"/about"} className={navLinkClass}>
               About
             </NavLink>
-            <NavLink to={"/login"} className={navLinkClass}>
-              Login
-            </NavLink>
-            <NavLink to={"/register"} className={navLinkClass}>
-              Register
-            </NavLink>
             <NavLink to={"/cart"} className={navLinkClass}>
               Cart
             </NavLink>
-            <button
-              className="shadow-outline rounded px-3 py-1 transition duration-100 hover:bg-cyan-hover"
-              onClick={handleClick}
-            >
-              Logout
-            </button>
+            {user && (
+              <div className="flex flex-col gap-8 items-center">
+                <span className="text-sm text-cyan-hover">
+                  Logged in as: <br />
+                  {user.username}
+                </span>
+                <button
+                  className="shadow-outline rounded px-3 py-1 transition duration-100 hover:bg-cyan-hover"
+                  onClick={handleClick}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+            {!user && (
+              <div className="flex flex-col gap-8 items-start">
+                <NavLink to={"/login"} className={navLinkClass}>
+                  Login
+                </NavLink>
+                <NavLink to={"/register"} className={navLinkClass}>
+                  Register
+                </NavLink>
+              </div>
+            )}
           </div>
         </motion.div>
       )}
